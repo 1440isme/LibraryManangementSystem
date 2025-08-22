@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "ThuVienApp (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "ThuVienApp (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

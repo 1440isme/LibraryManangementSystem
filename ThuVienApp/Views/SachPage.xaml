@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page x:Class="ThuVienApp.Views.SachPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:winui="using:Microsoft.UI.Xaml.Controls"
+      xmlns:toolkit="using:CommunityToolkit.WinUI.UI.Controls">
+    <StackPanel>
+        <TextBlock Text="Quản lý Sách" FontSize="24" Margin="0,0,0,20" />
+        <toolkit:DataGrid x:Name="SachDataGrid"
+                          ItemsSource="{x:Bind ViewModel.DanhSachSach, Mode=OneWay}"
+                          AutoGenerateColumns="False"
+                          IsReadOnly="True">
+            <toolkit:DataGrid.Columns>
+                <toolkit:DataGridTextColumn Header="Tiêu đề" Binding="{Binding TieuDe}" />
+                <toolkit:DataGridTextColumn Header="ISBN" Binding="{Binding ISBN}" />
+                <toolkit:DataGridTextColumn Header="Năm xuất bản" Binding="{Binding NamXuatBan}" />
+                <toolkit:DataGridTextColumn Header="Loại sách" Binding="{Binding TenLoaiSach}" />
+                <toolkit:DataGridTextColumn Header="NXB" Binding="{Binding TenNXB}" />
+                <toolkit:DataGridTextColumn Header="Bản sao còn lại" Binding="{Binding SoBanSaoConLai}" />
+            </toolkit:DataGrid.Columns>
+        </toolkit:DataGrid>
+        <Button Content="Thêm Sách" Command="{x:Bind ViewModel.ThemSachCommand}" Margin="0,10,0,0" />
+        <TextBlock Text="{x:Bind ViewModel.ErrorMessage}" Foreground="Red" Visibility="{x:Bind ViewModel.HasError, Mode=OneWay}" />
+    </StackPanel>
+</Page>

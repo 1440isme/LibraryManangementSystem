@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window x:Class="ThuVienApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:winui="using:Microsoft.UI.Xaml.Controls">
+    <winui:NavigationView x:Name="NavView" >
+        <winui:NavigationView.MenuItems>
+            <winui:NavigationViewItem Content="Quản lý Sách" Tag="SachPage" />
+            <winui:NavigationViewItem Content="Quản lý Thành viên" Tag="ThanhVienPage" />
+            <winui:NavigationViewItem Content="Mượn/Trả Sách" Tag="MuonTraSachPage" />
+            <winui:NavigationViewItem Content="Báo cáo" Tag="BaoCaoPage" />
+        </winui:NavigationView.MenuItems>
+        <Frame x:Name="ContentFrame" />
+    </winui:NavigationView>
+</Window>
