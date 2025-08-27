@@ -40,6 +40,8 @@ namespace ThuVienApp
         {
             this.InitializeComponent();
             ConfigureServices();
+            RequestedTheme = ApplicationTheme.Light;
+
         }
         private void ConfigureServices()
         {
@@ -65,6 +67,7 @@ namespace ThuVienApp
 
             // Đăng ký ViewModels với Transient
             services.AddTransient<SachViewModel>();
+            services.AddTransient<DashboardViewModel>();
 
             // Xây dựng ServiceProvider
             ServiceProvider = services.BuildServiceProvider();

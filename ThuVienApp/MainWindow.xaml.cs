@@ -1,48 +1,44 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Microsoft.UI.Xaml;
+﻿using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.Primitives;
-using Microsoft.UI.Xaml.Data;
-using Microsoft.UI.Xaml.Input;
-using Microsoft.UI.Xaml.Media;
-using Microsoft.UI.Xaml.Navigation;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-
-// To learn more about WinUI, the WinUI project structure,
-// and more about our project templates, see: http://aka.ms/winui-project-info.
+using System;
 
 namespace ThuVienApp
 {
-    /// <summary>
-    /// An empty window that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class MainWindow : Window
     {
         public MainWindow()
         {
             this.InitializeComponent();
-            NavView.ItemInvoked += NavView_ItemInvoked;
-            ContentFrame.Navigate(typeof(Views.SachPage));
+            NavView.SelectedItem = NavView.MenuItems[0]; // Mặc định chọn Dashboard
+            NavView_SelectionChanged(null, null); // Load Dashboard đầu tiên
         }
 
-        private void NavView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
+        private void NavView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
-            var tag = args.InvokedItemContainer.Tag.ToString();
-            Type pageType = tag switch
+            if (args?.SelectedItemContainer != null)
             {
-                "SachPage" => typeof(Views.SachPage),
-                //"ThanhVienPage" => typeof(Views.ThanhVienPage),
-                //"MuonTraSachPage" => typeof(Views.MuonTraSachPage),
-                //"BaoCaoPage" => typeof(Views.BaoCaoPage),
-                _ => null
-            };
-            if (pageType != null)
-                ContentFrame.Navigate(pageType);
+                var tag = args.SelectedItemContainer.Tag.ToString();
+                Type pageType = tag switch
+                {
+                    "DashboardPage" => typeof(Views.DashboardPage),
+                    "SachPage" => typeof(Views.SachPage),
+                    //"ThanhVienPage" => typeof(Views.ThanhVienPage),
+                    //"MuonTraSachPage" => typeof(Views.MuonTraSachPage),
+                    //"BaoCaoPage" => typeof(Views.BaoCaoPage),
+                    _ => null
+                };
+
+                if (pageType != null)
+                {
+                    ContentFrame.Navigate(pageType);
+                }
+            }
+        }
+
+        private void AddSachButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Logic mở ContentDialog Thêm Sách (sẽ triển khai sau)
+            System.Diagnostics.Debug.WriteLine("Button Thêm Sách clicked");
         }
     }
 }

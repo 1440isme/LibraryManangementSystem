@@ -1,0 +1,31 @@
+<Page x:Class="ThuVienApp.Views.DashboardPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:winui="using:Microsoft.UI.Xaml.Controls">
+    <StackPanel>
+        <TextBlock Text="Dashboard Thư viện" FontSize="28" Margin="0,0,0,20"  />
+        <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
+            <Border Background="#E0F7FA" CornerRadius="8" Padding="15" Margin="0,0,15,0" Width="220" Height="140">
+                <StackPanel>
+                    <TextBlock Text="Tổng số sách" FontSize="16" Foreground="#0288D1"/>
+                    <TextBlock Text="{x:Bind ViewModel.TongSoSach, Mode=OneWay}" FontSize="24" FontWeight="Bold" Foreground="#0288D1"/>
+                </StackPanel>
+            </Border>
+            <Border Background="#FFF3E0" CornerRadius="8" Padding="15" Margin="0,0,15,0" Width="220" Height="140">
+                <StackPanel>
+                    <TextBlock Text="Sách đã mượn" FontSize="16" Foreground="#EF6C00"/>
+                    <TextBlock Text="{x:Bind ViewModel.SachDaMuon, Mode=OneWay}" FontSize="24" FontWeight="Bold" Foreground="#EF6C00"/>
+                </StackPanel>
+            </Border>
+            <Border Background="#E8F5E9" CornerRadius="8" Padding="15" Margin="0,0,15,0" Width="220" Height="140">
+                <StackPanel>
+                    <TextBlock Text="Thành viên" FontSize="16" Foreground="#2E7D32"/>
+                    <TextBlock Text="{x:Bind ViewModel.TongSoThanhVien, Mode=OneWay}" FontSize="24" FontWeight="Bold" Foreground="#2E7D32"/>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+        <Border Background="#F5F5F5" CornerRadius="8" Padding="15" Height="300">
+            <TextBlock Text="Biểu đồ thống kê (sẽ cập nhật)" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        </Border>
+    </StackPanel>
+</Page>
