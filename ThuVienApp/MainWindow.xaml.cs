@@ -1,6 +1,8 @@
-﻿using Microsoft.UI.Xaml;
+﻿using Microsoft.UI;
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using System;
+using Microsoft.UI.Xaml.Media;
+using ThuVienApp.Views;
 
 namespace ThuVienApp
 {
@@ -8,37 +10,58 @@ namespace ThuVienApp
     {
         public MainWindow()
         {
-            this.InitializeComponent();
-            NavView.SelectedItem = NavView.MenuItems[0]; // Mặc định chọn Dashboard
-            NavView_SelectionChanged(null, null); // Load Dashboard đầu tiên
+            InitializeComponent();
+
+            // Mặc định load Trang Dashboard  
+            ContentFrame.Navigate(typeof(DashboardPage));
+            SetButtonSelected(BtnDashboard);
         }
 
-        private void NavView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
+        private void ResetAllButtons()
         {
-            if (args?.SelectedItemContainer != null)
+            var buttons = new[] { BtnDashboard, BtnSach, BtnThanhVien, BtnMuonTra, BtnBaoCao };
+            foreach (var btn in buttons)
             {
-                var tag = args.SelectedItemContainer.Tag.ToString();
-                Type pageType = tag switch
-                {
-                    "DashboardPage" => typeof(Views.DashboardPage),
-                    "SachPage" => typeof(Views.SachPage),
-                    //"ThanhVienPage" => typeof(Views.ThanhVienPage),
-                    //"MuonTraSachPage" => typeof(Views.MuonTraSachPage),
-                    //"BaoCaoPage" => typeof(Views.BaoCaoPage),
-                    _ => null
-                };
-
-                if (pageType != null)
-                {
-                    ContentFrame.Navigate(pageType);
-                }
+                btn.Background = new SolidColorBrush(Colors.Transparent);
+                btn.Foreground = new SolidColorBrush(Colors.Black);
             }
         }
 
-        private void AddSachButton_Click(object sender, RoutedEventArgs e)
+        private void SetButtonSelected(Button selected)
         {
-            // Logic mở ContentDialog Thêm Sách (sẽ triển khai sau)
-            System.Diagnostics.Debug.WriteLine("Button Thêm Sách clicked");
+            ResetAllButtons();
+            selected.Background = new SolidColorBrush(Colors.MediumSlateBlue);
+            selected.Foreground = new SolidColorBrush(Colors.White);
+        }
+
+        private void BtnDashboard_Click(object sender, RoutedEventArgs e)
+        {
+            ContentFrame.Navigate(typeof(DashboardPage));
+            SetButtonSelected((Button)sender);
+        }
+
+        private void BtnSach_Click(object sender, RoutedEventArgs e)
+        {
+            ContentFrame.Navigate(typeof(SachPage));
+            SetButtonSelected((Button)sender);
+        }
+
+        private void BtnThanhVien_Click(object sender, RoutedEventArgs e)
+        {
+            //ContentFrame.Navigate(typeof(ThanhVienPage));  
+            SetButtonSelected((Button)sender);
+        }
+
+        private void BtnMuonTra_Click(object sender, RoutedEventArgs e)
+        {
+            //ContentFrame.Navigate(typeof(MuonTraSachPage));  
+            SetButtonSelected((Button)sender);
+        }
+
+        private void BtnBaoCao_Click(object sender, RoutedEventArgs e)
+        {
+            //ContentFrame.Navigate(typeof(BaoCaoPage));  
+            SetButtonSelected((Button)sender);
         }
     }
 }
